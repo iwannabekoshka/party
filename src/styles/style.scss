@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+}
+body {
+  font-family: monospace;
+  font-size: 24px;
+
+  perspective: 1000px;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 100vh;
+
+  background-color: #333;
+
+  overflow: hidden;
+}
+.btn {
+  outline: 0;
+  border: 0;
+
+  padding: 1rem 2rem;
+
+  color: #fff;
+
+  background-color: hsl(257, 93%, 58%);
+  background-image: radial-gradient(hsl(263, 87%, 66%), transparent 75%);
+  background-repeat: no-repeat;
+  background-position: 0 100px;
+
+  transition: background-position 200ms;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-position: 0 35px;
+  }
+}
+
+// PARTY
+.party-trigger {
+  position: relative;
+
+  transform-style: preserve-3d;
+}
+.party-particles-container {
+  position: absolute;
+  inset: 50%;
+}
+.party-particle-container {
+  position: absolute;
+
+  animation: partyParticleContainer var(--partyDuration);
+}
+.party-particle {
+  position: absolute;
+
+  animation: partyParticle var(--partyDuration);
+  animation-fill-mode: forwards;
+  transition: opacity 1s;
+}
+
+@keyframes partyParticleContainer {
+  100% {
+    transform: translateY(var(--bottomY));
+  }
+}
+
+@keyframes partyParticle {
+  15% {
+    transform: translateY(var(--topY)) translateX(calc(var(--endX) * 0.5));
+  }
+
+  75% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(var(--endX)) translateZ(var(--offsetZ))
+      rotateX(var(--rotate)) rotateY(var(--rotate));
+    opacity: 0;
+  }
+}
